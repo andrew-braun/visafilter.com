@@ -12,9 +12,9 @@
 </script>
 
 <article class="card">
-	<header>
-		<p>{name}</p>
-		<h3>{programName}</h3>
+	<header class="card-header">
+		<p class="country-name">{name}</p>
+		<h3 class="program-name">{programName}</h3>
 	</header>
 
 	<section>
@@ -35,10 +35,16 @@
 		border-radius: var(--border-radius-md);
 		box-shadow: var(--shadow-md);
 
-		header {
+		.card-header {
 			display: flex;
 			justify-content: space-between;
+			gap: var(--spacing-sm);
 			margin-bottom: 1rem;
+
+			.country-name,
+			.program-name {
+				margin: 0;
+			}
 		}
 
 		section {
