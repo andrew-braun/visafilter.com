@@ -6,49 +6,100 @@
 	}
 
 	const { visa } = $props();
-
 	const { country, programName, financialRequirements, dependentRequirements } = visa;
 	const { name, code } = country;
 </script>
 
 <article class="card">
 	<header class="card-header">
-		<p class="country-name">{name}</p>
-		<h3 class="program-name">{programName}</h3>
+		<h3 class="country-name">{name}</h3>
+		<p class="program-name">{programName}</p>
 	</header>
 
-	<section>
-		<h3>Financial Requirements</h3>
-		<div class="financial-requirements">
-			{#each financialRequirements as { amount, currency, type }}
-				<p>{amount} {currency} / {type}</p>
-			{/each}
-		</div>
+	<section class="financial-requirements">
+		{#each financialRequirements as { amount, currency, type }}
+			<div class="requirement">
+				<span class="amount">{amount} {currency}</span>
+				<span class="type">{type}</span>
+			</div>
+		{/each}
 	</section>
 </article>
 
 <style lang="scss">
 	.card {
-		max-width: 380px;
-		margin: var(--spacing-md);
-		padding: var(--spacing-md);
-		border-radius: var(--border-radius-md);
-		box-shadow: var(--shadow-md);
+		position: relative;
+		overflow: hidden;
+		display: grid;
+		grid-template-rows: subgrid;
+		grid-row: span 3;
+		background: var(--color-background-mid);
+		border-radius: var(--border-radius-lg);
+		transition:
+			transform var(--transition-md),
+			box-shadow var(--transition-md);
+
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: var(--shadow-md);
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 4px;
+			background: var(--gradient-2);
+		}
 
 		.card-header {
-			display: flex;
-			justify-content: space-between;
-			gap: var(--spacing-sm);
-			margin-bottom: 1rem;
+			padding: var(--spacing-lg);
+			background: var(--color-background);
 
-			.country-name,
-			.program-name {
+			.country-name {
 				margin: 0;
+				font-size: var(--font-size-xl);
+				font-weight: 800;
+				background: var(--gradient-2);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+			}
+
+			.program-name {
+				margin: var(--spacing-xs) 0 0;
+				font-size: var(--font-size-md);
+				color: var(--color-background-dark-mid);
+				font-weight: 500;
 			}
 		}
 
-		section {
-			margin-top: 1rem;
+		.financial-requirements {
+			padding: var(--spacing-lg);
+			display: flex;
+			flex-direction: column;
+			gap: var(--spacing-md);
+
+			.requirement {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: var(--spacing-md);
+				background: var(--color-background);
+				border-radius: var(--border-radius-md);
+
+				.amount {
+					font-weight: 600;
+					font-size: var(--font-size-md);
+				}
+
+				.type {
+					color: var(--color-background-dark-mid);
+					font-size: var(--font-size-sm);
+				}
+			}
 		}
 	}
 </style>
