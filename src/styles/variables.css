@@ -21,6 +21,7 @@
 	--color-background-light-mid: hsl(0, 0%, 95%);
 	--color-background-contrast-light: var(--color-background-dark);
 	--color-text-light: hsl(0, 0%, 0%);
+	--color-text-mid-light: hsl(0, 0%, 20%);
 	--color-text-contrast-light: var(--color-text-dark);
 
 	/* Dark mode colors */
@@ -28,10 +29,11 @@
 	--color-background-dark-mid: hsl(0, 0%, 30%);
 	--color-background-contrast-dark: var(--color-background-light);
 	--color-text-dark: hsl(0, 0%, 100%);
+	--color-text-mid-dark: hsl(0, 0%, 80%);
 	--color-text-contrast-dark: var(--color-text-light);
 
 	/* Gradients */
-	--gradient-1: linear-gradient(90deg, var(--color-accent-3), var(--color-background));
+	--gradient-1: linear-gradient(90deg, var(--color-accent-3), var(--color-accent-1));
 	--gradient-2: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
 	--gradient-3: linear-gradient(90deg, var(--color-accent-2), var(--color-accent-3));
 

@@ -62,7 +62,7 @@
 				margin: 0;
 				font-size: var(--font-size-xl);
 				font-weight: 800;
-				background: var(--gradient-2);
+				background: var(--gradient-1);
 				-webkit-background-clip: text;
 				background-clip: text;
 				color: transparent;
@@ -71,16 +71,14 @@
 			.program-name {
 				margin: var(--spacing-xs) 0 0;
 				font-size: var(--font-size-md);
-				color: var(--color-background-dark-mid);
+				color: var(--color-text-mid-dark);
 				font-weight: 500;
 			}
 		}
 
 		.financial-requirements {
-			padding: var(--spacing-lg);
-			display: flex;
-			flex-direction: column;
-			gap: var(--spacing-md);
+			width: clamp(240px, 80%, 100%);
+			margin: auto;
 
 			.requirement {
 				display: flex;
@@ -96,7 +94,7 @@
 				}
 
 				.type {
-					color: var(--color-background-dark-mid);
+					color: var(--color-text-mid-dark);
 					font-size: var(--font-size-sm);
 				}
 			}
