@@ -1,18 +1,22 @@
 <script lang="ts">
 	import type { VisaProgram } from '$root/src/db/visas';
+	import '/node_modules/flag-icons/css/flag-icons.min.css';
 
 	interface VisaCardProps {
 		visa: VisaProgram;
 	}
 
-	const { visa } = $props();
+	const { visa }: VisaCardProps = $props();
 	const { country, programName, financialRequirements, dependentRequirements } = visa;
 	const { name, code } = country;
 </script>
 
 <article class="card">
 	<header class="card-header">
-		<h3 class="country-name">{name}</h3>
+		<div class="title-container">
+			<span class={`flag fi fi-${code.toLowerCase()}`}></span>
+			<h3 class="country-name">{name}</h3>
+		</div>
 		<p class="program-name">{programName}</p>
 	</header>
 
@@ -58,14 +62,24 @@
 			padding: var(--spacing-lg);
 			background: var(--color-background);
 
-			.country-name {
-				margin: 0;
-				font-size: var(--font-size-xl);
-				font-weight: 800;
-				background: var(--gradient-1);
-				-webkit-background-clip: text;
-				background-clip: text;
-				color: transparent;
+			.title-container {
+				display: flex;
+				align-items: center;
+				gap: var(--spacing-sm);
+
+				.flag {
+					font-size: 1.5em;
+				}
+
+				.country-name {
+					margin: 0;
+					font-size: var(--font-size-xl);
+					font-weight: 800;
+					background: var(--gradient-1);
+					-webkit-background-clip: text;
+					background-clip: text;
+					color: transparent;
+				}
 			}
 
 			.program-name {

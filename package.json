@@ -35,6 +35,7 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
+		"flag-icons": "^7.3.2",
 		"sass": "^1.83.4"
 	}
 }
