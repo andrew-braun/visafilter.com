@@ -9,6 +9,6 @@
 	}));
 </script>
 
-<main>
+<main class="section">
 	<CardRow cards={visaCards} />
 </main>

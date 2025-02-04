@@ -4,3 +4,10 @@
 	font-size: var(--font-size-xl);
 	// text-decoration: underline;
 }
+
+@mixin gradient-text($gradient: --gradient-1) {
+	background: var($gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}

@@ -75,10 +75,7 @@
 					margin: 0;
 					font-size: var(--font-size-xl);
 					font-weight: 800;
-					background: var(--gradient-1);
-					-webkit-background-clip: text;
-					background-clip: text;
-					color: transparent;
+					@include gradient-text;
 				}
 			}
 

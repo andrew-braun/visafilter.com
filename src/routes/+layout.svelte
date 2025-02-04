@@ -1,7 +1,8 @@
 <script lang="ts">
+	import Header from '$components/layout/header/Header.svelte';
 	import { siteData } from '$lib/data/site/site-data';
 
-	// import "$styles/fonts.css";
+	import '$styles/fonts.css';
 	import '$styles/global.css';
 	import '$styles/variables.css';
 
@@ -13,16 +14,16 @@
 	<meta name="description" content={siteData.description} />
 </svelte:head>
 
-<header class="header"></header>
+<Header />
 
-<main class="main">
+<div class="site-container">
 	{@render children()}
-</main>
+</div>
 
 <footer class="footer"></footer>
 
 <style lang="scss">
-	.main {
+	.site-container {
 		max-width: var(--site-max-width);
 		margin: auto;
 	}

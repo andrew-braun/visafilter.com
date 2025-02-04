@@ -17,7 +17,7 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		grid-template-rows: auto auto 1fr; /* Define explicit rows */
-		gap: var(--spacing-md);
+		gap: var(--spacing-lg);
 		max-width: 100%;
 	}
 </style>
