@@ -15,7 +15,9 @@
 	<header class="card-header">
 		<div class="title-container">
 			<span class={`flag fi fi-${code.toLowerCase()}`}></span>
-			<h3 class="country-name">{name}</h3>
+			<span class={`country-name-wrapper flag fi fi-${code.toLowerCase()}`}>
+				<span class="country-name">{name}</span>
+			</span>
 		</div>
 		<p class="program-name">{programName}</p>
 	</header>
@@ -71,11 +73,17 @@
 					font-size: 1.5em;
 				}
 
-				.country-name {
-					margin: 0;
-					font-size: var(--font-size-xl);
-					font-weight: 800;
-					@include gradient-text;
+				.country-name-wrapper {
+					background-clip: text;
+					width: 100%;
+					background-repeat: repeat;
+					.country-name {
+						margin: 0;
+						font-size: var(--font-size-xl);
+						font-weight: 800;
+						// @include gradient-text;
+						color: hsla(0, 0%, 100%, 0.4);
+					}
 				}
 			}
 
