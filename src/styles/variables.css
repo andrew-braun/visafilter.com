@@ -93,7 +93,11 @@
 		--border-md: 2px solid var(--color-text-light);
 	}
 
+	/* Border */
+	--border-md: 2px solid var(--color-background-contrast);
+
 	/* Border radius */
+	--border-radius-sm: 2px;
 	--border-radius-md: 4px;
 	--border-radius-lg: 12px;
 	--border-radius-xl: 40px;

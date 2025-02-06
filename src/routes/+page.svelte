@@ -1,14 +1,5 @@
 <script lang="ts">
-	import CardRow from '$components/cards/CardRow.svelte';
-	import VisaCard from '$components/cards/VisaCard.svelte';
-	import { visaPrograms } from '$db/visas';
-
-	const visaCards = visaPrograms.map((visa) => ({
-		component: VisaCard,
-		props: { visa }
-	}));
+	import VisaList from '$components/VisaList/VisaList.svelte';
 </script>
 
-<main class="section">
-	<CardRow cards={visaCards} />
-</main>
+<VisaList />

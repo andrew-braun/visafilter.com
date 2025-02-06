@@ -36,6 +36,7 @@
 	},
 	"dependencies": {
 		"flag-icons": "^7.3.2",
+		"melt": "^0.10.3",
 		"sass": "^1.83.4"
 	}
 }
