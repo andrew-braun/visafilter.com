@@ -1,23 +1,45 @@
 <script lang="ts">
+	import Input from '$components/ui/inputs/Input.svelte';
 	import Slider from '$components/ui/Slider.svelte';
-	import { formatMoney } from '$root/src/utils/numbers';
 	import { setIncomeFilter, visaFilterState } from './visastate.svelte';
 
 	const { income } = $derived(visaFilterState);
 
-	const incomeValue = $derived(formatMoney({ amount: income, currency: 'USD' }));
-
-	const onValueChange = (value: number) => {
+	const onSliderValueChange = (value: number) => {
 		setIncomeFilter((value / 100) * 500000);
+	};
+
+	const onInputValueChange = (event: Event) => {
+		if (!(event.target instanceof HTMLInputElement)) return;
+
+		setIncomeFilter(parseInt(event.target.value));
 	};
 </script>
 
 <section class="filter-section">
 	<div class="income-filter">
-		<div class="income-value">
-			<span>Income: </span>
-			<span>{incomeValue}</span>
-		</div>
-		<Slider {onValueChange} step={0.1} />
+		<Input
+			type="number"
+			value={Math.trunc(income)}
+			label="Income"
+			id="income"
+			step={500}
+			onchange={onInputValueChange}
+		/>
+		<Slider onValueChange={onSliderValueChange} step={0.1} value={(income / 500000) * 100} />
 	</div>
 </section>
+
+<style lang="scss">
+	.filter-section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-sm);
+
+		.income-filter {
+			display: flex;
+			flex-direction: column;
+			gap: var(--spacing-sm);
+		}
+	}
+</style>

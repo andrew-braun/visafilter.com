@@ -4,15 +4,19 @@
 	interface SliderComponentProps {
 		onValueChange: (value: number) => void;
 		step?: number;
+		value?: number;
 	}
 
-	let { onValueChange, step = 1 }: SliderComponentProps = $props();
+	let props: SliderComponentProps = $props();
+	let { onValueChange, step = 1 }: SliderComponentProps = props;
+	let value = $derived(props.value);
 
 	const slider = new Slider({
 		onValueChange: (value) => {
 			onValueChange(value);
 		},
-		step
+		step,
+		value: () => value
 	});
 </script>
 
