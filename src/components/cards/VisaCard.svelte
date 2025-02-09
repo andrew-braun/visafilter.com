@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { VisaProgram } from '$root/src/db/visas';
-	import '/node_modules/flag-icons/css/flag-icons.min.css';
+	import type { VisaProgram } from "$root/src/db/visas";
+	import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 	interface VisaCardProps {
 		visa: VisaProgram;
@@ -51,7 +51,7 @@
 		}
 
 		&::before {
-			content: '';
+			content: "";
 			position: absolute;
 			top: 0;
 			left: 0;

@@ -1,9 +1,31 @@
-export interface InputProps {
-	id: string;
+export type BasicInputProps = {
+	type: string;
 	label: string;
-	orientation?: 'vertical' | 'horizontal';
+	id: string;
+	orientation?: "vertical" | "horizontal";
+	disabled?: boolean;
+	required?: boolean;
+	class?: string;
+};
+
+export type TextInputProps = BasicInputProps & {
+	type: "text";
+	value?: string;
+	placeholder?: string;
+	pattern?: string;
+	minlength?: number;
+	maxlength?: number;
+};
+
+export type NumberInputProps = BasicInputProps & {
+	type: "number";
+	value?: number;
+	min?: number;
+	max?: number;
+	onchange?: (event: Event) => void;
+	placeholder?: string;
+	showButtons?: boolean;
 	step?: number;
-	type?: 'text' | 'number' | 'email' | 'password';
-	value: string | number;
-	onchange?: (value: any) => void;
-}
+};
+
+export type InputProps = TextInputProps | NumberInputProps;

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Input from '$components/ui/inputs/Input.svelte';
-	import Slider from '$components/ui/Slider.svelte';
-	import { setIncomeFilter, visaFilterState } from './visastate.svelte';
+	import Input from "$components/ui/inputs/Input.svelte";
+	import Slider from "$components/ui/Slider.svelte";
+	import { setIncomeFilter, visaFilterState } from "./visastate.svelte";
 
 	const { income } = $derived(visaFilterState);
 
@@ -25,6 +25,7 @@
 			id="income"
 			step={500}
 			onchange={onInputValueChange}
+			showButtons={false}
 		/>
 		<Slider onValueChange={onSliderValueChange} step={0.1} value={(income / 500000) * 100} />
 	</div>
@@ -38,8 +39,10 @@
 
 		.income-filter {
 			display: flex;
-			flex-direction: column;
+			flex-direction: grid;
+			grid-template-columns: 1fr 7fr;
 			gap: var(--spacing-sm);
+			align-items: end;
 		}
 	}
 </style>

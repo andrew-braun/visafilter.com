@@ -14,6 +14,7 @@
 	--color-background-mid: var(--color-background-dark-mid);
 	--color-background-contrast: var(--color-background-contrast-dark);
 	--color-text: var(--color-text-dark);
+	--color-text-mid: var(--color-text-mid-dark);
 	--color-text-contrast: var(--color-text-contrast-dark);
 
 	/* Light mode colors */

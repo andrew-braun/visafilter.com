@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Slider, type SliderProps } from 'melt/builders';
+	import { Slider, type SliderProps } from "melt/builders";
 
 	interface SliderComponentProps {
 		onValueChange: (value: number) => void;
@@ -20,12 +20,10 @@
 	});
 </script>
 
-<div {...slider.root}>
-	<div class="slider" {...slider.root}>
-		<div class="track">
-			<div class="range"></div>
-			<div {...slider.thumb}></div>
-		</div>
+<div class="slider" {...slider.root}>
+	<div class="track">
+		<div class="range"></div>
+		<div {...slider.thumb}></div>
 	</div>
 </div>
 
