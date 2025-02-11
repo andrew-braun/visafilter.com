@@ -32,15 +32,5 @@
 		&.vertical {
 			flex-direction: column;
 		}
-
-		// input {
-		// 	padding: var(--spacing-xs);
-		// 	border: 1px solid var(--color-border);
-		// 	border-radius: var(--border-radius-sm);
-		// 	background: var(--color-background-mid);
-		// 	font-size: var(--font-size-md);
-		// 	color: var(--color-text);
-		// 	text-align: center;
-		// }
 	}
 </style>

@@ -51,6 +51,7 @@
 		gap: var(--spacing-sm);
 
 		.number-input {
+			width: 100%;
 			padding: var(--spacing-xs);
 			border: 1px solid var(--color-border);
 			border-radius: var(--border-radius-sm);

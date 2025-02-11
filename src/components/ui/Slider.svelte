@@ -1,39 +1,99 @@
 <script lang="ts">
-	import { Slider, type SliderProps } from "melt/builders";
+	import { Slider } from "melt/builders";
+	import { scale } from "svelte/transition";
+	import Input from "./inputs/Input.svelte";
 
 	interface SliderComponentProps {
 		onValueChange: (value: number) => void;
 		step?: number;
-		value?: number;
+		range: [number, number];
+		withInput?: boolean;
 	}
 
 	let props: SliderComponentProps = $props();
-	let { onValueChange, step = 1 }: SliderComponentProps = props;
-	let value = $derived(props.value);
+	let {
+		onValueChange,
+		step = 1,
+		range = [0, 100],
+		withInput = false
+	}: SliderComponentProps = props;
+
+	const scaleValueToPercent = (value: number) => (value / range[1]) * 100;
+	const scalePercentToValue = (percent: number) => (percent / 100) * range[1];
+
+	let sliderValue = $state(scaleValueToPercent(range[0]));
 
 	const slider = new Slider({
-		onValueChange: (value) => {
-			onValueChange(value);
+		onValueChange: (newValue) => {
+			const scaledValue = Math.trunc(scalePercentToValue(newValue));
+			sliderValue = scaledValue ?? null;
+
+			onValueChange(scaledValue);
 		},
 		step,
-		value: () => value
+		value: () => (sliderValue / range[1]) * 100
 	});
+
+	function handleInputChange(event: Event) {
+		let numValue = Number((event.target as HTMLInputElement).value);
+
+		if (isNaN(numValue)) {
+			sliderValue = 0;
+			onValueChange(0);
+			return;
+		}
+
+		sliderValue = numValue;
+		onValueChange(numValue);
+	}
 </script>
 
-<div class="slider" {...slider.root}>
-	<div class="track">
-		<div class="range"></div>
-		<div {...slider.thumb}></div>
+{#snippet SliderSnippet()}
+	<div class="slider" {...slider.root}>
+		<div class="track">
+			<div class="range"></div>
+			<div {...slider.thumb}></div>
+		</div>
 	</div>
-</div>
+{/snippet}
+
+{#if !withInput}
+	{@render SliderSnippet()}
+{/if}
+
+{#if withInput}
+	<div class="slider-container">
+		<div class="input">
+			<Input
+				type="number"
+				value={sliderValue}
+				label="Income"
+				id="income"
+				step={500}
+				onchange={handleInputChange}
+				showButtons={false}
+			/>
+		</div>
+		{@render SliderSnippet()}
+	</div>
+{/if}
 
 <style lang="scss">
+	.slider-container {
+		display: grid;
+		grid-template-columns: 1fr 7fr;
+		align-items: end;
+		gap: var(--spacing-md);
+	}
+
+	.input {
+		grid-column: 1;
+	}
 	.slider {
+		grid-column: 2;
 		width: 100%;
 		height: 20px;
-		margin: 0 auto;
-
-		// padding-block: 16px; /* padding to increase touch area */
+		margin: 0 auto 5px auto;
 
 		.track {
 			background: grey;
