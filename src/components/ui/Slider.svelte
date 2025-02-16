@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { Slider } from "melt/builders";
-	import { scale } from "svelte/transition";
 	import Input from "./inputs/Input.svelte";
 
 	interface SliderComponentProps {
+		label?: string;
+		id?: string;
 		onValueChange: (value: number) => void;
 		step?: number;
 		range: [number, number];
@@ -12,6 +13,8 @@
 
 	let props: SliderComponentProps = $props();
 	let {
+		label = "Value",
+		id = "slider",
 		onValueChange,
 		step = 1,
 		range = [0, 100],
@@ -67,8 +70,8 @@
 			<Input
 				type="number"
 				value={sliderValue}
-				label="Income"
-				id="income"
+				{label}
+				{id}
 				step={500}
 				onchange={handleInputChange}
 				showButtons={false}

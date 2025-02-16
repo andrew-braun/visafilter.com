@@ -1,17 +1,35 @@
 <script lang="ts">
 	import Slider from "$components/ui/Slider.svelte";
-	import { setIncomeFilter, visaFilterState } from "./visastate.svelte";
-
-	const { income } = $derived(visaFilterState);
+	import { getMonthlyIncomeReq } from "$db/functions/find-data";
+	import { sortVisaProgramsByIncome } from "$db/functions/organize-data";
+	import { visaPrograms } from "$db/visas";
+	import { setIncomeFilter } from "./visastate.svelte";
 
 	const onSliderValueChange = (value: number) => {
 		setIncomeFilter(value);
 	};
+
+	const visasSortedByIncome = sortVisaProgramsByIncome({ visaPrograms }).filter(
+		(visa) => getMonthlyIncomeReq({ visa })?.amount
+	);
+
+	const maxMonthlyIncomeAmount = getMonthlyIncomeReq({ visa: visasSortedByIncome[0] })?.amount || 0;
+	// const maxYearlyIncomeAmount = maxMonthlyIncomeAmount * 12;
+
+	// const minMonthlyIncomeAmount =
+	// 	getMonthlyIncomeReq({ visa: visaPrograms[visaPrograms.length - 1] })?.amount || 0;
 </script>
 
 <section class="filter-section">
 	<div class="income-filter">
-		<Slider onValueChange={onSliderValueChange} step={0.1} range={[0, 500000]} withInput={true} />
+		<Slider
+			onValueChange={onSliderValueChange}
+			step={0.1}
+			range={[0, maxMonthlyIncomeAmount]}
+			withInput={true}
+			label="Monthly Income (USD)"
+			id="income-slider"
+		/>
 	</div>
 </section>
 

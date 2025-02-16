@@ -3,12 +3,16 @@
 		cards: any[];
 	}
 
-	const { cards } = $props();
+	const { cards }: CardRowProps = $props();
+	$inspect(
+		"cardrow: ",
+		cards.map((card) => card.props.visa.country)
+	);
 </script>
 
 <div class="card-row">
-	{#each cards as card, index}
-		<card.component {...card.props} key={index} />
+	{#each cards as card (card.id)}
+		<card.component {...card.props} />
 	{/each}
 </div>
 
