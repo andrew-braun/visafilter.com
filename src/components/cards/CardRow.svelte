@@ -4,10 +4,6 @@
 	}
 
 	const { cards }: CardRowProps = $props();
-	$inspect(
-		"cardrow: ",
-		cards.map((card) => card.props.visa.country)
-	);
 </script>
 
 <div class="card-row">

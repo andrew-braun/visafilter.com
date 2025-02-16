@@ -1,5 +1,12 @@
 <script lang="ts">
-	import VisaList from '$components/VisaList/VisaList.svelte';
+	import VisaList from "$components/VisaList/VisaList.svelte";
+	import type { PageProps } from "./$types";
+	let { data }: PageProps = $props();
+	let { countries } = data;
+
+	console.log(countries);
+
+	export const prerender = true;
 </script>
 
 <VisaList />

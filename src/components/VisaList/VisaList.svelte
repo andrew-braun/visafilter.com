@@ -28,9 +28,6 @@
 			id: `${visa.id}-${visa.country}` // Using country as a unique identifier since each visa program is per country
 		}))
 	);
-
-	console.log("programs: ", visaPrograms);
-	$inspect(filteredVisaPrograms?.map((visa) => visa.country));
 </script>
 
 <main class="section visa-list">
