@@ -31,81 +31,6 @@ export const visaPrograms: VisaProgram[] = [
 	{
 		id: 1,
 		country: {
-			name: "Portugal",
-			code: "PT"
-		},
-		programName: "D7 Digital Nomad Visa",
-		financialRequirements: [
-			{
-				type: "monthly",
-				amount: 3040,
-				currency: "EUR"
-			}
-		],
-		dependentRequirements: [
-			{
-				type: "percentage",
-				firstAmount: 50,
-				isSequential: false,
-				appliesTo: ["spouse"]
-			},
-			{
-				type: "percentage",
-				firstAmount: 30,
-				isSequential: false,
-				appliesTo: ["child"]
-			}
-		]
-	},
-	{
-		id: 2,
-		country: {
-			name: "Croatia",
-			code: "HR"
-		},
-		programName: "Digital Nomad Residence Permit",
-		financialRequirements: [
-			{
-				type: "yearly",
-				amount: 25932,
-				currency: "EUR"
-			}
-		]
-	},
-	{
-		id: 3,
-		country: {
-			name: "Dubai",
-			code: "AE"
-		},
-		programName: "Remote Work Visa",
-		financialRequirements: [
-			{
-				type: "monthly",
-				amount: 5000,
-				currency: "USD"
-			}
-		]
-	},
-	{
-		id: 4,
-		country: {
-			name: "Estonia",
-			code: "EE"
-		},
-		programName: "Digital Nomad Visa",
-		financialRequirements: [
-			{
-				type: "savings",
-				amount: 4500,
-				currency: "EUR",
-				duration: 6
-			}
-		]
-	},
-	{
-		id: 5,
-		country: {
 			name: "Greece",
 			code: "GR"
 		},
@@ -121,35 +46,228 @@ export const visaPrograms: VisaProgram[] = [
 			{
 				type: "percentage",
 				firstAmount: 20,
+				subsequentAmount: 15,
 				isSequential: false,
-				appliesTo: ["spouse"]
-			},
+				appliesTo: ["spouse", "child"]
+			}
+		]
+	},
+	{
+		id: 2,
+		country: {
+			name: "Norway",
+			code: "NO"
+		},
+		programName: "Digital Nomad Visa",
+		financialRequirements: [
 			{
-				type: "percentage",
-				firstAmount: 15,
-				isSequential: false,
-				appliesTo: ["child"]
+				type: "yearly",
+				amount: 35500,
+				currency: "EUR"
+			}
+		]
+	},
+	{
+		id: 3,
+		country: {
+			name: "Cayman Islands",
+			code: "KY"
+		},
+		programName: "Global Citizen Concierge Program",
+		financialRequirements: [
+			{
+				type: "yearly",
+				amount: 100000,
+				currency: "USD"
+			}
+		]
+	},
+	{
+		id: 4,
+		country: {
+			name: "Antigua and Barbuda",
+			code: "AG"
+		},
+		programName: "Nomad Digital Residence",
+		financialRequirements: [
+			{
+				type: "yearly",
+				amount: 50000,
+				currency: "USD"
+			}
+		]
+	},
+	{
+		id: 5,
+		country: {
+			name: "Turkey",
+			code: "TR"
+		},
+		programName: "Digital Nomad Visa",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 3000,
+				currency: "USD"
 			}
 		]
 	},
 	{
 		id: 6,
 		country: {
-			name: "Thailand",
-			code: "TH"
+			name: "Japan",
+			code: "JP"
 		},
-		programName: "Long Term Resident Visa",
+		programName: "Digital Nomad Visa",
 		financialRequirements: [
 			{
-				type: "savings",
-				amount: 500000,
-				currency: "THB",
-				duration: 6
+				type: "yearly",
+				amount: 66400,
+				currency: "USD"
 			}
 		]
 	},
 	{
 		id: 7,
+		country: {
+			name: "United Arab Emirates",
+			code: "AE"
+		},
+		programName: "Virtual Working Programme",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 5000,
+				currency: "USD"
+			}
+		]
+	},
+	{
+		id: 8,
+		country: {
+			name: "Mauritius",
+			code: "MU"
+		},
+		programName: "Premium Travel Visa",
+		financialRequirements: []
+	},
+	{
+		id: 9,
+		country: {
+			name: "Latvia",
+			code: "LV"
+		},
+		programName: "Digital Nomad Visa",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 3400,
+				currency: "EUR"
+			}
+		]
+	},
+	{
+		id: 10,
+		country: {
+			name: "Cyprus",
+			code: "CY"
+		},
+		programName: "Digital Nomad Visa",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 3500,
+				currency: "EUR"
+			}
+		],
+		dependentRequirements: [
+			{
+				type: "fixed",
+				firstAmount: 700,
+				subsequentAmount: 525,
+				currency: "EUR",
+				isSequential: true,
+				appliesTo: ["spouse", "child"]
+			}
+		]
+	},
+	{
+		id: 11,
+		country: {
+			name: "Malta",
+			code: "MT"
+		},
+		programName: "Nomad Residency Permit",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 2700,
+				currency: "EUR"
+			}
+		]
+	},
+	{
+		id: 12,
+		country: {
+			name: "Belize",
+			code: "BZ"
+		},
+		programName: "Work Where You Vacation",
+		financialRequirements: [
+			{
+				type: "yearly",
+				amount: 75000,
+				currency: "USD"
+			}
+		]
+	},
+	{
+		id: 13,
+		country: {
+			name: "El Salvador",
+			code: "SV"
+		},
+		programName: "Digital Nomad Visa",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 1460,
+				currency: "USD"
+			}
+		]
+	},
+	{
+		id: 14,
+		country: {
+			name: "Taiwan",
+			code: "TW"
+		},
+		programName: "Gold Card Program",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 5700,
+				currency: "USD"
+			}
+		]
+	},
+	{
+		id: 15,
+		country: {
+			name: "Portugal",
+			code: "PT"
+		},
+		programName: "D7 Digital Nomad Visa",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 3480,
+				currency: "EUR"
+			}
+		]
+	},
+	{
+		id: 16,
 		country: {
 			name: "Spain",
 			code: "ES"
@@ -158,17 +276,68 @@ export const visaPrograms: VisaProgram[] = [
 		financialRequirements: [
 			{
 				type: "monthly",
-				amount: 2646,
+				amount: 2762,
 				currency: "EUR"
 			}
-		],
-		dependentRequirements: [
+		]
+	},
+	{
+		id: 17,
+		country: {
+			name: "Croatia",
+			code: "HR"
+		},
+		programName: "Digital Nomad Residence Permit",
+		financialRequirements: [
 			{
-				type: "percentage",
-				firstAmount: 37.5,
-				subsequentAmount: 25,
-				isSequential: true,
-				appliesTo: ["spouse", "child"]
+				type: "monthly",
+				amount: 2200,
+				currency: "EUR"
+			}
+		]
+	},
+	{
+		id: 18,
+		country: {
+			name: "Iceland",
+			code: "IS"
+		},
+		programName: "Long-term Remote Work Visa",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 7075,
+				currency: "EUR"
+			}
+		]
+	},
+	{
+		id: 19,
+		country: {
+			name: "Brazil",
+			code: "BR"
+		},
+		programName: "Digital Nomad Visa",
+		financialRequirements: [
+			{
+				type: "monthly",
+				amount: 1500,
+				currency: "USD"
+			}
+		]
+	},
+	{
+		id: 20,
+		country: {
+			name: "Barbados",
+			code: "BB"
+		},
+		programName: "Welcome Stamp",
+		financialRequirements: [
+			{
+				type: "yearly",
+				amount: 50000,
+				currency: "USD"
 			}
 		]
 	}
