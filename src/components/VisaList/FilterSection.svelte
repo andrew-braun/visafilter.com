@@ -21,7 +21,7 @@
 </script>
 
 <section class="filter-section">
-	<div class="income-filter">
+	<div class="filter income-filter">
 		<Slider
 			onValueChange={onSliderValueChange}
 			step={0.1}
@@ -35,6 +35,12 @@
 
 <style lang="scss">
 	.filter-section {
+		.filter {
+			padding: var(--spacing-sm);
+			border-radius: var(--border-radius-md);
+			background: hsla(0, 0%, 100%, 0.4);
+		}
+
 		.income-filter {
 			position: relatiive;
 		}

@@ -4,9 +4,9 @@ export interface SiteDataProperties {
 }
 
 export const siteData = {
-	name: 'VisaFilter',
-	tagline: 'Find the visas you qualify for',
-	title: 'VisaFilter - Find the visas you qualify for',
+	name: "VisaFilter",
+	tagline: "Find the nomad visas you qualify for",
+	title: "VisaFilter - Find the nomad visas you qualify for",
 	description:
-		'VisaFilter is a tool that helps you find the digital nomad visas you qualify for based on your income.'
+		"VisaFilter is a tool that helps you find the digital nomad visas you qualify for based on your income."
 };

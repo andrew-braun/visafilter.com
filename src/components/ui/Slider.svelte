@@ -66,11 +66,11 @@
 
 {#if withInput}
 	<div class="slider-container">
+		<label for={id} class="label">{label}</label>
 		<div class="input">
 			<Input
 				type="number"
 				value={sliderValue}
-				{label}
 				{id}
 				step={500}
 				onchange={handleInputChange}
@@ -87,6 +87,10 @@
 		grid-template-columns: 1fr 7fr;
 		align-items: end;
 		gap: var(--spacing-md);
+
+		.label {
+			grid-column: 1 / 3;
+		}
 	}
 
 	.input {
