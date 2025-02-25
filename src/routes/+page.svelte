@@ -2,11 +2,8 @@
 	import VisaList from "$components/VisaList/VisaList.svelte";
 	import type { PageProps } from "./$types";
 	let { data }: PageProps = $props();
-	// let { countries } = data;
-
-	console.log(data);
 
 	export const prerender = true;
 </script>
 
-<VisaList />
+<VisaList visaData={data.visaData} />

@@ -1,34 +1,46 @@
 <script lang="ts">
-	import type { VisaProgram } from "$root/src/db/visas";
+	import type { VisaData } from "$components/VisaList/types";
 	import "/node_modules/flag-icons/css/flag-icons.min.css";
 
+	interface FinancialRequirement {
+		amount: number;
+		currency: string;
+		type: string;
+	}
+
 	interface VisaCardProps {
-		visa: VisaProgram;
+		visa: {
+			id: number;
+			name: string;
+			country: string;
+			countryCode: string;
+			region: string;
+			subRegion: string;
+			financialRequirements: FinancialRequirement;
+		};
 	}
 
 	const { visa }: VisaCardProps = $props();
-	const { country, programName, financialRequirements, dependentRequirements } = visa;
-	const { name, code } = country;
 </script>
 
 <article class="card">
 	<header class="card-header">
 		<div class="title-container">
-			<span class={`flag fi fi-${code.toLowerCase()}`}></span>
-			<span class={`country-name-wrapper flag fi fi-${code.toLowerCase()}`}>
-				<span class="country-name">{name}</span>
+			<span class={`flag fi fi-${visa.countryCode.toLowerCase()}`}></span>
+			<span class={`country-name-wrapper flag fi fi-${visa.countryCode.toLowerCase()}`}>
+				<span class="country-name">{visa.country}</span>
 			</span>
 		</div>
-		<p class="program-name">{programName}</p>
+		<p class="program-name">{visa.name}</p>
 	</header>
 
 	<section class="financial-requirements">
-		{#each financialRequirements as { amount, currency, type }}
-			<div class="requirement">
-				<span class="amount">{amount} {currency}</span>
-				<span class="type">{type}</span>
-			</div>
-		{/each}
+		<div class="requirement">
+			<span class="amount"
+				>{visa.financialRequirements.amount} {visa.financialRequirements.currency}</span
+			>
+			<span class="type">{visa.financialRequirements.type}</span>
+		</div>
 	</section>
 </article>
 
@@ -81,7 +93,6 @@
 						margin: 0;
 						font-size: var(--font-size-xl);
 						font-weight: 800;
-						// @include gradient-text;
 						color: hsla(0, 0%, 100%, 0.4);
 					}
 				}

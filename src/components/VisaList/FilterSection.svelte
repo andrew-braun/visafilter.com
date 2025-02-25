@@ -1,23 +1,28 @@
 <script lang="ts">
 	import Slider from "$components/ui/Slider.svelte";
-	import { getMonthlyIncomeReq } from "$db/functions/find-data";
-	import { sortVisaProgramsByIncome } from "$db/functions/organize-data";
-	import { visaPrograms } from "$db/visas";
+	import type { VisaData } from "./types";
 	import { setIncomeFilter } from "./visastate.svelte";
+
+	let { visaData }: { visaData: VisaData[] } = $props();
 
 	const onSliderValueChange = (value: number) => {
 		setIncomeFilter(value);
 	};
 
-	const visasSortedByIncome = sortVisaProgramsByIncome({ visaPrograms }).filter(
-		(visa) => getMonthlyIncomeReq({ visa })?.amount
+	// Calculate max monthly income by converting all amounts to monthly
+	const maxMonthlyIncome = Math.max(
+		...visaData
+			.filter((visa) => visa.financialAmount && visa.requirementType)
+			.map((visa) => {
+				if (visa.requirementType === "yearly") {
+					return (visa.financialAmount || 0) / 12;
+				}
+				if (visa.requirementType === "monthly") {
+					return visa.financialAmount || 0;
+				}
+				return 0; // for savings or undefined
+			})
 	);
-
-	const maxMonthlyIncomeAmount = getMonthlyIncomeReq({ visa: visasSortedByIncome[0] })?.amount || 0;
-	// const maxYearlyIncomeAmount = maxMonthlyIncomeAmount * 12;
-
-	// const minMonthlyIncomeAmount =
-	// 	getMonthlyIncomeReq({ visa: visaPrograms[visaPrograms.length - 1] })?.amount || 0;
 </script>
 
 <section class="filter-section">
@@ -25,7 +30,7 @@
 		<Slider
 			onValueChange={onSliderValueChange}
 			step={0.1}
-			range={[0, maxMonthlyIncomeAmount]}
+			range={[0, maxMonthlyIncome]}
 			withInput={true}
 			label="Monthly Income (USD)"
 			id="income-slider"
@@ -42,7 +47,7 @@
 		}
 
 		.income-filter {
-			position: relatiive;
+			position: relative;
 		}
 	}
 </style>

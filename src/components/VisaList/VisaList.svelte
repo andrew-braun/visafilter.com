@@ -1,37 +1,72 @@
 <script lang="ts">
 	import CardRow from "$components/cards/CardRow.svelte";
 	import VisaCard from "$components/cards/VisaCard.svelte";
-	import { getMonthlyIncomeReq, getYearlyIncomeReq } from "$db/functions/find-data";
-	import { sortVisaProgramsByIncome } from "$db/functions/organize-data";
-	import { visaPrograms, type VisaProgram } from "$db/visas";
 	import FilterSection from "./FilterSection.svelte";
+	import type { VisaData } from "./types";
 	import { visaFilterState } from "./visastate.svelte";
 
-	function filterVisaProgram({ visa }: { visa: VisaProgram }) {
-		if (!visa.financialRequirements) return false;
+	let { visaData }: { visaData: VisaData[] } = $props();
 
-		const monthlyIncomeReq = getMonthlyIncomeReq({ visa })?.amount || 0;
-		const yearlyIncomeReq = getYearlyIncomeReq({ visa })?.amount || 0;
+	function filterVisaProgram(visa: VisaData) {
+		// No filtering if no income filter is set or if requirement is savings type
+		if (visaFilterState.income === 0 || visa.requirementType === "savings") return true;
 
-		return visaFilterState.income === 0 || monthlyIncomeReq <= visaFilterState.income;
+		// Skip if no financial requirements
+		if (!visa.financialAmount || !visa.requirementType) return false;
+
+		// Handle monthly requirements
+		if (visa.requirementType === "monthly") {
+			return visa.financialAmount <= visaFilterState.income;
+		}
+
+		// Handle yearly requirements
+		if (visa.requirementType === "yearly") {
+			const annualIncome = visaFilterState.income * 12;
+			return visa.financialAmount <= annualIncome;
+		}
+
+		return false;
 	}
 
 	const filteredVisaPrograms = $derived(
-		sortVisaProgramsByIncome({
-			visaPrograms: visaPrograms.filter((visa) => filterVisaProgram({ visa }))
+		visaData.filter(filterVisaProgram).sort((a, b) => {
+			// Convert all amounts to monthly for consistent sorting
+			const getMonthlyAmount = (visa: VisaData) => {
+				if (!visa.financialAmount) return 0;
+				if (visa.requirementType === "yearly") return visa.financialAmount / 12;
+				if (visa.requirementType === "monthly") return visa.financialAmount;
+				return 0; // For savings or undefined
+			};
+			return getMonthlyAmount(b) - getMonthlyAmount(a);
 		})
 	);
+
 	const filteredVisaCards = $derived(
-		filteredVisaPrograms.map((visa: VisaProgram) => ({
+		filteredVisaPrograms.map((visa) => ({
 			component: VisaCard,
-			props: { visa },
-			id: `${visa.id}-${visa.country}` // Using country as a unique identifier since each visa program is per country
+			props: {
+				visa: {
+					id: visa.visaId,
+					name: visa.programName,
+					country: visa.countryName,
+					countryCode: visa.countryAlpha2,
+					region: visa.countryRegion || "",
+					subRegion: visa.countrySubregion || "",
+					financialRequirements: {
+						id: visa.financialId || 0,
+						amount: visa.financialAmount || 0,
+						currency: visa.financialCurrency || "USD",
+						type: visa.requirementType || "monthly"
+					}
+				}
+			},
+			id: `${visa.visaId}-${visa.financialId}`
 		}))
 	);
 </script>
 
 <main class="section visa-list">
-	<FilterSection />
+	<FilterSection {visaData} />
 	<CardRow cards={filteredVisaCards} />
 </main>
 
