@@ -1,23 +1,10 @@
 <script lang="ts">
-	import type { VisaData } from "$components/VisaList/types";
+	import type { FinancialRequirement, VisaData } from "$components/VisaList/types";
 	import "/node_modules/flag-icons/css/flag-icons.min.css";
 
-	interface FinancialRequirement {
-		amount: number;
-		currency: string;
-		type: string;
-	}
-
 	interface VisaCardProps {
-		visa: {
-			id: number;
-			name: string;
-			country: string;
-			countryCode: string;
-			region: string;
-			subRegion: string;
-			financialRequirements: FinancialRequirement;
-		};
+		id: string;
+		visa: VisaData;
 	}
 
 	const { visa }: VisaCardProps = $props();
@@ -26,20 +13,18 @@
 <article class="card">
 	<header class="card-header">
 		<div class="title-container">
-			<span class={`flag fi fi-${visa.countryCode.toLowerCase()}`}></span>
-			<span class={`country-name-wrapper flag fi fi-${visa.countryCode.toLowerCase()}`}>
-				<span class="country-name">{visa.country}</span>
+			<span class={`flag fi fi-${visa.country.alpha2.toLowerCase()}`}></span>
+			<span class={`country-name-wrapper flag fi fi-${visa.country.alpha2.toLowerCase()}`}>
+				<span class="country-name">{visa.country.name}</span>
 			</span>
 		</div>
-		<p class="program-name">{visa.name}</p>
+		<p class="program-name">{visa.program.name}</p>
 	</header>
 
 	<section class="financial-requirements">
 		<div class="requirement">
-			<span class="amount"
-				>{visa.financialRequirements.amount} {visa.financialRequirements.currency}</span
-			>
-			<span class="type">{visa.financialRequirements.type}</span>
+			<span class="amount">{visa.financial.amount} {visa.financial.currency}</span>
+			<span class="type">{visa.financial.type}</span>
 		</div>
 	</section>
 </article>

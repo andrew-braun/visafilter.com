@@ -1,12 +1,24 @@
+export interface FinancialRequirement {
+	amount: number;
+	currency: string;
+	type: string;
+}
+
 export interface VisaData {
-	visaId: number;
-	programName: string;
-	countryName: string;
-	countryAlpha2: string;
-	countryRegion?: string | null;
-	countrySubregion?: string | null;
-	financialId: number;
-	financialAmount: number | null;
-	financialCurrency: string | null;
-	requirementType: string | null;
+	program: {
+		id: number;
+		name: string;
+	};
+	country: {
+		name: string;
+		alpha2: string;
+		region: string | null;
+		subregion: string | null;
+	};
+	financial: {
+		id: number;
+		amount: number | null;
+		currency: string | null;
+		type: string | null;
+	};
 }

@@ -12,13 +12,13 @@
 	// Calculate max monthly income by converting all amounts to monthly
 	const maxMonthlyIncome = Math.max(
 		...visaData
-			.filter((visa) => visa.financialAmount && visa.requirementType)
+			.filter((visa) => visa.financial.amount && visa.financial.type)
 			.map((visa) => {
-				if (visa.requirementType === "yearly") {
-					return (visa.financialAmount || 0) / 12;
+				if (visa.financial.type === "yearly") {
+					return (visa.financial.amount || 0) / 12;
 				}
-				if (visa.requirementType === "monthly") {
-					return visa.financialAmount || 0;
+				if (visa.financial.type === "monthly") {
+					return visa.financial.amount || 0;
 				}
 				return 0; // for savings or undefined
 			})

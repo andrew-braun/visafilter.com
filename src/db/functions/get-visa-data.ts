@@ -5,7 +5,7 @@ import { financialRequirementsTable } from "../schemas/financial_requirements_sc
 import { visaProgramsTable } from "../schemas/visa_programs_schema";
 
 export async function getVisaData() {
-	return await db
+	const response = await db
 		.select({
 			// Visa Program fields
 			visaId: visaProgramsTable.id,
@@ -26,4 +26,26 @@ export async function getVisaData() {
 			financialRequirementsTable,
 			eq(financialRequirementsTable.visa_program_id, visaProgramsTable.id)
 		);
+
+	const formattedData = {
+		visaData: response.map((item) => ({
+			program: {
+				id: item.visaId,
+				name: item.programName
+			},
+			country: {
+				name: item.countryName,
+				alpha2: item.countryAlpha2,
+				region: item.countryRegion,
+				subregion: item.countrySubregion
+			},
+			financial: {
+				amount: item.financialAmount,
+				currency: item.financialCurrency,
+				type: item.requirementType
+			}
+		}))
+	};
+
+	return formattedData;
 }
