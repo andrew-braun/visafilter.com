@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FinancialRequirement, VisaData } from "$components/VisaList/types";
+	import { formatMoney } from "$root/src/utils/numbers";
 	import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 	interface VisaCardProps {
@@ -8,6 +9,17 @@
 	}
 
 	const { visa }: VisaCardProps = $props();
+
+	const baseCurrencyCode = visa?.financial?.currency;
+	const baseCurrencyAmount = visa?.financial?.amount ?? 0;
+	const usdAmount =
+		visa?.financial?.currencies?.["USD"]?.amount ??
+		baseCurrencyAmount * visa?.financial?.currencies?.[baseCurrencyCode]?.usdRate ??
+		0;
+	const conversionRate = $state(1);
+	const convertedCurrencyAmount = $derived(
+		formatMoney({ amount: usdAmount * conversionRate, currency: "USD" })
+	);
 </script>
 
 <article class="card">
@@ -23,7 +35,9 @@
 
 	<section class="financial-requirements">
 		<div class="requirement">
-			<span class="amount">{visa.financial.amount} {visa.financial.currency}</span>
+			{#if visa.financial.amount && visa?.financial?.currencies?.["USD"]}
+				<span class="amount"> {convertedCurrencyAmount} USD</span>
+			{/if}
 			<span class="type">{visa.financial.type}</span>
 		</div>
 	</section>

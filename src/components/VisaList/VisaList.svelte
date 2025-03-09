@@ -33,11 +33,17 @@
 			// Convert all amounts to monthly for consistent sorting
 			const getMonthlyAmount = (visa: VisaData) => {
 				if (!visa?.financial?.amount) return 0;
-				if (visa.financial.type === "yearly") return visa.financial.amount / 12;
-				if (visa.financial.type === "monthly") return visa.financial.amount;
-				return 0; // For savings or undefined
+
+				const usdAmount = visa.financial.currencies.USD.amount as number;
+
+				if (visa.financial.type === "yearly") return usdAmount / 12;
+				if (visa.financial.type === "monthly") return usdAmount;
+				if (visa.financial.type === "savings") return usdAmount / 24;
+
+				return 0;
 			};
-			return getMonthlyAmount(b) - getMonthlyAmount(a);
+
+			return getMonthlyAmount(a) - getMonthlyAmount(b);
 		})
 	);
 

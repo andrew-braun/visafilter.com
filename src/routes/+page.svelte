@@ -3,7 +3,7 @@
 	import type { PageProps } from "./$types";
 	let { data }: PageProps = $props();
 
-	export const prerender = true;
+	console.log(data);
 </script>
 
 <VisaList visaData={data.visaData} />

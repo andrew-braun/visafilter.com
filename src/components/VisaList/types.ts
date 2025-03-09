@@ -1,7 +1,10 @@
+import type { Currencies } from "$root/src/ts/currency";
+
 export interface FinancialRequirement {
 	amount: number;
 	currency: string;
 	type: string;
+	currencies: Currencies;
 }
 
 export interface VisaData {
@@ -17,8 +20,9 @@ export interface VisaData {
 	};
 	financial: {
 		id: number;
-		amount: number | null;
-		currency: string | null;
-		type: string | null;
+		amount: number;
+		currency: string;
+		type: string;
+		currencies: Currencies;
 	};
 }
