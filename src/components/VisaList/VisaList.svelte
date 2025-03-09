@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CardRow from "$components/cards/CardRow.svelte";
 	import VisaCard from "$components/cards/VisaCard.svelte";
+	import { getMonthlyAmount } from "$root/src/utils/visa/financial";
 	import FilterSection from "./FilterSection.svelte";
 	import type { VisaData } from "./types";
 	import { visaFilterState } from "./visastate.svelte";
@@ -31,17 +32,6 @@
 	const filteredVisaPrograms = $derived(
 		visaData.filter(filterVisaProgram).sort((a, b) => {
 			// Convert all amounts to monthly for consistent sorting
-			const getMonthlyAmount = (visa: VisaData) => {
-				if (!visa?.financial?.amount) return 0;
-
-				const usdAmount = visa.financial.currencies.USD.amount as number;
-
-				if (visa.financial.type === "yearly") return usdAmount / 12;
-				if (visa.financial.type === "monthly") return usdAmount;
-				if (visa.financial.type === "savings") return usdAmount / 24;
-
-				return 0;
-			};
 
 			return getMonthlyAmount(a) - getMonthlyAmount(b);
 		})

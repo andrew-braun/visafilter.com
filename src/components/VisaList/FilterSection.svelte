@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Slider from "$components/ui/Slider.svelte";
+	import { getMonthlyAmount } from "$root/src/utils/visa/financial";
 	import type { VisaData } from "./types";
 	import { setIncomeFilter } from "./visastate.svelte";
 
@@ -13,15 +14,7 @@
 	const maxMonthlyIncome = Math.max(
 		...visaData
 			.filter((visa) => visa.financial.amount && visa.financial.type)
-			.map((visa) => {
-				if (visa.financial.type === "yearly") {
-					return (visa.financial.amount || 0) / 12;
-				}
-				if (visa.financial.type === "monthly") {
-					return visa.financial.amount || 0;
-				}
-				return 0; // for savings or undefined
-			})
+			.map((visa) => getMonthlyAmount(visa))
 	);
 </script>
 

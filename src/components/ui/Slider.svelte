@@ -86,7 +86,7 @@
 		display: grid;
 		grid-template-columns: 1fr 7fr;
 		align-items: end;
-		gap: var(--spacing-md);
+		gap: var(--spacing);
 
 		.label {
 			grid-column: 1 / 3;
@@ -98,8 +98,9 @@
 	}
 	.slider {
 		grid-column: 2;
-		width: 100%;
+		width: 96%;
 		height: 20px;
+		padding-inline: 3%;
 		margin: 0 auto 5px auto;
 
 		.track {
