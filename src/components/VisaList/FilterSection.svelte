@@ -22,7 +22,7 @@
 	<div class="filter income-filter">
 		<Slider
 			onValueChange={onSliderValueChange}
-			step={0.1}
+			step={100 / maxMonthlyIncome}
 			range={[0, maxMonthlyIncome]}
 			withInput={true}
 			label="Monthly Income (USD)"
