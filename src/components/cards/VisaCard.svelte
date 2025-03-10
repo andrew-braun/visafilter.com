@@ -33,14 +33,21 @@
 		<p class="program-name">{visa.program.name}</p>
 	</header>
 
-	<section class="financial-requirements">
-		<div class="requirement">
-			{#if visa.financial.amount && visa?.financial?.currencies?.["USD"]}
+	{#if visa.financial.amount && visa?.financial?.currencies?.["USD"]}
+		<section class="financial-requirements">
+			<div class="requirement">
 				<span class="amount"> {convertedCurrencyAmount} USD</span>
-			{/if}
-			<span class="type">{visa.financial.type}</span>
-		</div>
-	</section>
+				<span class="type">{visa.financial.type}</span>
+			</div>
+		</section>
+	{/if}
+	{#if !visa?.financial?.amount}
+		<section class="financial-requirements">
+			<div class="requirement">
+				<span class="amount">No set financial requirement</span>
+			</div>
+		</section>
+	{/if}
 </article>
 
 <style lang="scss">

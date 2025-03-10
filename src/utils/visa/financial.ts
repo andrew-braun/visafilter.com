@@ -2,9 +2,6 @@ import type { VisaData } from "$components/VisaList/types";
 
 export const getMonthlyAmount = (visa: VisaData, currency: string = "USD") => {
 	if (!visa?.financial?.amount) return 0;
-	if (currency) {
-		console.log(currency);
-	}
 
 	//TODO: run calculations for any currency
 
