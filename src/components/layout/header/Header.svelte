@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { siteData } from '$lib/data/site/site-data';
+	import { siteData } from "$lib/data/site/site-data";
 
 	console.log(siteData);
 </script>
@@ -11,8 +11,8 @@
 
 <style lang="scss">
 	.header {
-		margin-bottom: var(--spacing-lg);
-		padding: 0 var(--spacing-gutters);
+		margin-bottom: var(--spacing-md);
+		padding: var(--spacing-md) var(--spacing-gutters);
 
 		.site-brand {
 			@include gradient-text(--gradient-2);
@@ -25,6 +25,8 @@
 		.tagline {
 			width: fit-content;
 			margin: 0 0 var(--spacing-md) 0;
+			font-size: var(--font-size-md);
+			font-weight: 500;
 		}
 	}
 </style>

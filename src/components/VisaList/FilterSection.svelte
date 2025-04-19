@@ -36,7 +36,8 @@
 		.filter {
 			padding: var(--spacing-sm);
 			border-radius: var(--border-radius-md);
-			background: hsla(0, 0%, 100%, 0.4);
+
+			background: linear-gradient(90deg, var(--color-background-mid), var(--color-secondary) 90%);
 		}
 
 		.income-filter {

@@ -67,53 +67,62 @@
 {#if withInput}
 	<div class="slider-container">
 		<label for={id} class="label">{label}</label>
-		<div class="input">
-			<Input
-				type="number"
-				value={sliderValue}
-				{id}
-				step={500}
-				onchange={handleInputChange}
-				showButtons={false}
-			/>
+		<div class="controls">
+			<div class="input">
+				<Input
+					type="number"
+					value={sliderValue}
+					{id}
+					step={500}
+					onchange={handleInputChange}
+					showButtons={false}
+				/>
+			</div>
+			{@render SliderSnippet()}
 		</div>
-		{@render SliderSnippet()}
 	</div>
 {/if}
 
 <style lang="scss">
 	.slider-container {
-		display: grid;
-		grid-template-columns: 1fr 7fr;
-		align-items: end;
-		gap: var(--spacing);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-sm);
 
 		.label {
-			grid-column: 1 / 3;
+			width: fit-content;
+			padding: var(--spacing-xs) var(--spacing-sm);
+			border-radius: var(--border-radius-md);
+			background: var(--color-background);
+			font-size: var(--font-size-md);
+			font-weight: 500;
+		}
+
+		.controls {
+			display: grid;
+			grid-template-columns: min(80px) 6fr;
+			align-items: center;
+			gap: var(--spacing);
 		}
 	}
 
-	.input {
-		grid-column: 1;
-	}
 	.slider {
-		grid-column: 2;
-		width: 96%;
-		height: 20px;
-		padding-inline: 3%;
-		margin: 0 auto 5px auto;
+		// width: 90%;
+		height: 10px;
+		padding: 0px 10px 0px 20px;
+		// margin: 0 auto 5px auto;
 
 		.track {
-			background: grey;
 			height: 100%;
 			position: relative;
 			background: var(--color-background-mid);
-			border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+			border: 2px solid var(--color-background-mid);
+			border-radius: var(--border-radius-md);
 		}
 
 		.range {
 			position: absolute;
-			background: var(--color-accent-3);
+			background: var(--gradient-1);
 			inset: 0;
 			right: var(--percentage-inv);
 			border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
@@ -126,8 +135,8 @@
 		left: var(--percentage);
 		top: 50%;
 		transform: translate(-50%, -50%);
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 		padding: var(--spacing-xs);
 		border: var(--border-md);
 		border-radius: 50%;
