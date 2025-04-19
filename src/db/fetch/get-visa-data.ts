@@ -31,10 +31,7 @@ export async function getVisaData() {
 			);
 
 		const formattedData: VisaData[] = response.map((item) => ({
-			program: {
-				id: item.visaId || -1,
-				name: item.programName
-			},
+			program: { id: item.visaId || -1, name: item.programName },
 			country: {
 				name: item.countryName || "",
 				alpha2: item.countryAlpha2 || "",
