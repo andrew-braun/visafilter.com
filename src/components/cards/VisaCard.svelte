@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from "$components/ui/buttons/Button.svelte";
 	import type { VisaData } from "$components/VisaList/types";
 	import { formatMoney } from "$root/src/utils/numbers";
 	import { getUsdAmountFromVisa } from "$root/src/utils/visa/financial";
@@ -45,6 +46,7 @@
 			</div>
 		</section>
 	{/if}
+	<!-- <Button variant="primary">See Visa Details</Button> -->
 </article>
 
 <style lang="scss">
