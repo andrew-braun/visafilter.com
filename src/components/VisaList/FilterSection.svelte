@@ -14,7 +14,7 @@
 	const maxMonthlyIncome = Math.max(
 		...visaData
 			.filter((visa) => visa.financial.amount && visa.financial.type)
-			.map((visa) => getMonthlyAmount(visa))
+			.map((visa) => getMonthlyAmount({ visa }))
 	);
 </script>
 

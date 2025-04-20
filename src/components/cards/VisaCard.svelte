@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { FinancialRequirement, VisaData } from "$components/VisaList/types";
+	import type { VisaData } from "$components/VisaList/types";
 	import { formatMoney } from "$root/src/utils/numbers";
+	import { getUsdAmountFromVisa } from "$root/src/utils/visa/financial";
 	import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 	interface VisaCardProps {
@@ -10,12 +11,8 @@
 
 	const { visa }: VisaCardProps = $props();
 
-	const baseCurrencyCode = visa?.financial?.currency;
-	const baseCurrencyAmount = visa?.financial?.amount ?? 0;
-	const usdAmount =
-		visa?.financial?.currencies?.["USD"]?.amount ??
-		baseCurrencyAmount * visa?.financial?.currencies?.[baseCurrencyCode]?.usdRate ??
-		0;
+	const usdAmount = getUsdAmountFromVisa({ visa });
+
 	const conversionRate = $state(1);
 	const convertedCurrencyAmount = $derived(
 		formatMoney({ amount: usdAmount * conversionRate, currency: "USD" })

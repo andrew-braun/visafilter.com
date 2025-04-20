@@ -1,10 +1,11 @@
 <script lang="ts">
-	import Header from '$components/layout/header/Header.svelte';
-	import { siteData } from '$lib/data/site/site-data';
+	import Footer from "$components/layout/header/Footer.svelte";
+	import Header from "$components/layout/header/Header.svelte";
+	import { siteData } from "$lib/data/site/site-data";
 
-	import '$styles/fonts.css';
-	import '$styles/global.css';
-	import '$styles/variables.css';
+	import "$styles/fonts.css";
+	import "$styles/global.css";
+	import "$styles/variables.css";
 
 	const { children } = $props();
 </script>
@@ -20,15 +21,10 @@
 	{@render children()}
 </div>
 
-<footer class="footer"></footer>
+<Footer />
 
 <style lang="scss">
 	.site-container {
-		max-width: var(--site-max-width);
-		margin: auto;
-	}
-
-	.footer {
 		max-width: var(--site-max-width);
 		margin: auto;
 	}

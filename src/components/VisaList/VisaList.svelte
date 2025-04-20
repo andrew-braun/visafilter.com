@@ -33,7 +33,7 @@
 		visaData.filter(filterVisaProgram).sort((a, b) => {
 			// Convert all amounts to monthly for consistent sorting
 
-			return getMonthlyAmount(a) - getMonthlyAmount(b);
+			return getMonthlyAmount({ visa: a }) - getMonthlyAmount({ visa: b });
 		})
 	);
 
